@@ -40,7 +40,7 @@ route.post("/addinfo", verifyToken, (req, res, next) => {
     })
     .catch((err) => {
       //res.send(err) // the are same (res.send) or (res.status(000).json)
-      res.status(404).json(err);
+      res.status(404).json({ err: err });
     });
 });
 
@@ -100,3 +100,16 @@ route.patch("/updateinfobyId/:id", verifyToken, (req, res, next) => {
 });
 
 module.exports = route;
+
+//--------------SQL------------------
+
+route.post("/addSQLinfo", (req, res, next) => {
+  infoModel
+    .postSQLinfoData(req.body.name, req.body.age)
+    .then((msg) => {
+      res.status(200).json(msg);
+    })
+    .catch((err) => {
+      res.status(404).json({ err: err });
+    });
+});

@@ -75,8 +75,9 @@ exports.login = (email, password) => {
                 //send token
                 let token = jwt.sign(
                   { id: user._id, userName: user.userName },
-                  privatekey,
-                  { expiresIn: "1h" }
+                  privatekey
+                  /*,
+                  { expiresIn: "1h" }*/
                 );
                  // console.log(token)
                 //--------
